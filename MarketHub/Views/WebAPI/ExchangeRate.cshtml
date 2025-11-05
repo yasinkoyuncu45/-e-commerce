@@ -1,0 +1,36 @@
+﻿@{
+	ViewData["Title"] = "ExchangeRate";
+	Layout = "~/Views/Shared/DefaultLayout.cshtml";
+	
+}
+<div class="container">
+	<div class="row">
+		
+		<table class="table table-bordered table-striped table-condensed flip-content">
+			<thead>
+				<tr>
+					<th scope="col">Dolar Alış</th>
+					<th scope="col">Dolar Satış</th>
+					<th scope="col">Euro Alış</th>
+					<th scope="col">Euro Satış </th>
+					
+
+				</tr>
+			</thead>
+			<tbody >
+				
+					<tr>
+						<td>@ViewBag.dolaralis</td>
+						<td>@ViewBag.dolarsatis</td>
+						<td>@ViewBag.euroalis</td>
+						<td>@ViewBag.eurosatis</td>
+						
+					</tr>
+					
+				
+			</tbody>
+		</table>
+	</div>
+	
+
+</div>

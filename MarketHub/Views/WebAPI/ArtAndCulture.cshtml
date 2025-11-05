@@ -1,0 +1,58 @@
+﻿@model IEnumerable<Activite>
+@{
+    ViewData["Title"] = "ArtAndCulture";
+    Layout = "~/Views/Shared/DefaultLayout.cshtml";
+}
+<div class="container">
+    <div class="row">
+        <table class="table table-bordered table-striped table-condensed flip-content">
+            <thead>
+                <tr>
+                    <th scope="col">@Html.DisplayNameFor(model => model.Tur)</th>
+                    <th scope="col">@Html.DisplayNameFor(model => model.Adı)</th>
+                    <th scope="col">@Html.DisplayNameFor(model => model.EtkinlikBaşlamaTarihi)</th>
+                    <th scope="col">@Html.DisplayNameFor(model => model.EtkinlikBitişTarihi)</th>
+                    <th scope="col">@Html.DisplayNameFor(model => model.EtkinlikMerkezi)</th>
+                    <th scope="col">@Html.DisplayNameFor(model => model.KısaAçıklama)</th>
+                    <th scope="col">@Html.DisplayNameFor(model => model.BiletSatışLinki)</th>
+                    <th scope="col">@Html.DisplayNameFor(model => model.KucukAfiş)</th>
+                </tr>
+            </thead>
+            <tbody>
+               
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>@item.Tur</td>
+                            <td>@item.Adı</td>
+                            <td>@item.EtkinlikBaşlamaTarihi</td>
+                            <td>@item.EtkinlikBitişTarihi</td>
+                            <td>@item.EtkinlikMerkezi</td>
+                            <td>
+                                @if (item.KısaAçıklama != null) // KısaAçıklama'nın null olup olmadığını kontrol et
+                                {
+                                    @(item.KısaAçıklama.Replace("<br>", ""))
+                                }
+                                
+                            </td>
+                            <td>
+                                @if (item.BiletSatışLinki != null)
+                                {
+                                    <a href="@item.BiletSatışLinki" target="_blank" class="btn btn-success">
+                                        Etkinlik Linki
+                                    </a>
+                                }
+                            </td>
+                            <td style="height:50px;width:250px;">
+                                @if (item.KucukAfiş != null) // KucukAfiş'in null olup olmadığını kontrol et
+                                {
+                                    <img src="@item.KucukAfiş" />
+                                }
+                            </td>
+                        </tr>
+                    }
+                
+            </tbody>
+        </table>
+    </div>
+</div>

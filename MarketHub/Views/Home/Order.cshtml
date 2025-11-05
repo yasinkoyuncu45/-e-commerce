@@ -1,0 +1,292 @@
+﻿@model User
+@{
+    ViewData["Title"] = "Order";
+    Layout = "~/Views/Shared/DefaultLayout.cshtml";
+
+}
+<!-- wishlist area start  -->
+<div class="wishlist-wrapper">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12 col-md-12 col-lg-12 ">
+
+
+                <div class="row">
+                    <div class="col-lg-3 col-md-3 col-sm-3 "></div>
+                    <div class="col-lg-6 col-md-6 col-sm-6 ">
+                        <div class="cart_totals">
+                            <h2>İletişim Bilgileriniz </h2>
+                            <div class="total_table">
+                                <table class="table-responsive">
+                                    <tbody>
+
+
+                                        <tr class="cart-subtotal">
+                                            <th>Adı Soyadı</th>
+                                            <td><span class="amount">@Model.NameSurname</span></td>
+                                        </tr>
+
+                                        <tr class="cart-subtotal">
+                                            <th>Email</th>
+                                            <td><span class="amount">@Model.Email</span></td>
+                                        </tr>
+
+                                        <tr class="cart-subtotal">
+                                            <th>Telefon No</th>
+                                            <td><span class="amount">@Model.Telephone</span></td>
+                                        </tr>
+
+                                        <tr class="shipping">
+                                            <th>Fatura Adresi</th>
+                                            <td>@Model.InvoicesAddress</td>
+                                        </tr>
+
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <form action="/Home/Order" method="post" id="com-form-login">
+
+                    <div class="row">
+                        <div class="col-lg-3 col-md-3 col-sm-3 "></div>
+                        <div class="col-lg-6 col-md-6 col-sm-6 ">
+                            <div class="cart_totals">
+                                <h2>Kredi Kart Bilgilerini Giriniz </h2>
+                                <div class="total_table">
+                                    <table class="table-responsive">
+                                        <tbody>
+
+
+                                            <tr class="cart-subtotal">
+                                                <th>Kart No</th>
+                                                <td>
+                                                    <span class="amount">
+
+                                                        <input type="text" name="kredikartno" class="inputbox"
+                                                               maxlength="16" required onkeypress="return numberonly(this, event)" />
+
+                                                    </span>
+                                                </td>
+                                            </tr>
+                                            <tr class="cart-subtotal">
+                                                <th>Ay</th>
+                                                <td>
+                                                    <span class="amount">
+
+                                                        <input type="text" name="kredikartay" class="inputbox"
+                                                               maxlength="2" required onkeypress="return numberonly(this, event)" />
+
+                                                    </span>
+                                                </td>
+                                            </tr>
+                                            <tr class="cart-subtotal">
+                                                <th>Yıl</th>
+                                                <td>
+                                                    <span class="amount">
+
+                                                        <input type="text" name="kredikartyıl" class="inputbox"
+                                                               maxlength="2" required onkeypress="return numberonly(this, event)" />
+
+                                                    </span>
+                                                </td>
+                                            </tr>
+                                            <tr class="cart-subtotal">
+                                                <th>CVS</th>
+                                                <td>
+                                                    <span class="amount">
+
+                                                        <input type="text" name="kredikartcvs" class="inputbox"
+                                                               maxlength="3" required onkeypress="return numberonly(this, event)" />
+
+                                                    </span>
+                                                </td>
+                                            </tr>
+
+
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="row">
+                        <div class="col-lg-3 col-md-3 col-sm-3 "></div>
+                        <div class="col-lg-6 col-md-6 col-sm-6 ">
+                            <div class="cart_totals">
+                                <h2>Fatura Bilgilerini Giriniz </h2>
+                                <div class="total_table">
+                                    <table class="table-responsive">
+                                        <tbody>
+
+                                            <tr class="cart-subtotal">
+                                                <th>Fatura Tipi</th>
+                                                <td>
+                                                    <span class="amount">
+
+                                                        @Html.RadioButton("invoicetype", "rbindividual",
+                                                        new { value = "rbindividual", @checked = true })Bireysel
+                                                        @Html.RadioButton("invoicetype", "rbcorporate",
+                                                                                                                new { value = "rbcorporate" })Kurumsal
+                                                    </span>
+                                                </td>
+                                            </tr>
+
+                                            @*Bireysel için bura gözükecek*@
+                                            <tr class="cart-subtotal" id="tr_tckimlik">
+                                                <th>Tc Kimlik No</th>
+                                                <td>
+                                                    <span class="amount">
+
+                                                        <input type="text" id="txt_individual" name="txt_individual" class="inputbox"
+                                                               maxlength="11" required onkeypress="return numberonly(this, event)" />
+
+                                                    </span>
+                                                </td>
+                                            </tr>
+                                            @*Kurumsal için bura gözükecek*@
+                                            <tr class="cart-subtotal" id="tr_vergino" style="display:none;">
+                                                <th>Vergi No</th>
+                                                <td>
+                                                    <span class="amount">
+
+                                                        <input type="text" id="txt_corporate" name="txt_corporate" class="inputbox"
+                                                               maxlength="10" onkeypress="return numberonly(this, event)" />
+
+                                                    </span>
+                                                </td>
+                                            </tr>
+
+
+
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-lg-3 col-md-3 col-sm-3 "></div>
+                        <div class="col-lg-6 col-md-6 col-sm-6 ">
+                            <div class="cart_totals">
+                                <h2>Satış Sözleşmesi </h2>
+                                <div class="total_table">
+                                    <table class="table-responsive">
+                                        <tbody>
+
+
+                                            <tr class="cart-subtotal">
+
+                                                <td>
+                                                    <span class="amount">
+
+                                                        <strong>
+                                                            Satılan ürün iadesi 2 gün içinde yapılabilir
+                                                        </strong>
+
+                                                    </span>
+                                                </td>
+                                            </tr>
+
+
+
+
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="row">
+                        <div class="col-lg-3 col-md-3 col-sm-3 "></div>
+                        <div class="col-lg-6 col-md-6 col-sm-6 ">
+                            <div class="cart_totals">
+                                <div class="total_table">
+                                    <table class="table-responsive">
+                                        <tbody>
+
+
+                                            <tr class="cart-subtotal">
+
+                                                <td>
+                                                    <span class="amount">
+
+                                                        <strong>
+                                                            <label>
+                                                                @Html.CheckBox("chk_accept", false)
+                                                                Yukarıdaki bilgilendirmeyi okudum,kabul ediyorum.
+
+                                                            </label>
+                                                        </strong>
+
+                                                    </span>
+                                                </td>
+                                            </tr>
+
+
+
+
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <div class="submit_crt" style="text-align:right;display:none;" id="div_siparisonayla">
+                                <input type="submit" class="update_cart" value="SİPARİŞ ONAYLA" />
+                            </div>
+
+                        </div>
+                    </div>
+
+
+                </form>
+
+
+
+            </div>
+        </div>
+    </div>
+</div>
+<!-- wishlist area end  -->
+<script>
+    $('input[type=radio][name=invoicetype]').on('change', function(){
+        //alert("dasdas")//
+        if($(this).val()=='rbindividual')
+        {
+            $("#tr_tckimlik").css("display","block")
+            $("#tr_vergino").css("display","none")
+            $("#txt_corporate").val("")
+            $('#txt_individual').attr("required","true")
+            $("#txt_corporate").removeAttr("required")
+
+        }
+        else
+        {
+            $("#tr_tckimlik").css("display","none")
+            $("#tr_vergino").css("display","block")
+            $("#txt_individual").val("")
+            $('#txt_corporate').attr("required","true")
+            $("#txt_individual").removeAttr("required")
+
+        }
+
+    })
+
+    $('input[type=CheckBox][name=chk_accept]').on('change',function(){
+
+        if($(this).prop('checked'))
+        {
+            $("#div_siparisonayla").css('display','block')
+        }
+        else{
+            $("#div_siparisonayla").css('display','none')
+        }
+    })
+
+</script>

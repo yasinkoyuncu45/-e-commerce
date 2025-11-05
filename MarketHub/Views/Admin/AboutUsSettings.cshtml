@@ -1,0 +1,76 @@
+﻿@model AboutUs
+
+@{
+	ViewData["Title"] = "AboutUsSettings";
+	Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+
+<!-- BEGIN SAMPLE FORM PORTLET-->
+<div class="portlet box purple ">
+	<div class="portlet-title">
+		<div class="caption">
+			<i class="fa fa-gift"></i> Hakkımızda Düzeltme FORMU
+		</div>
+		<div class="tools">
+			<a href="" class="collapse"></a>
+			<a href="#portlet-config" data-toggle="modal" class="config"></a>
+			<a href="" class="reload"></a>
+			<a href="" class="remove"></a>
+		</div>
+	</div>
+	<div class="portlet-body form">
+		<form class="form-horizontal" role="form" method="post" enctype="multipart/form-data" action="/Admin/AboutUsSettings">
+
+			<div asp-validation-summary="ModelOnly" class="text-danger"></div>
+			<div class="form-body">
+
+				<div class="form-group">
+					<label asp-for="SuperScript" class="col-md-3 control-label">Üst Metin</label>
+					<div class="col-md-9">
+						<textarea asp-for="SuperScript" class="form-control input-lg" style="height:150px; placeholder="Metin Gir" required></textarea>
+						<span asp-validation-for="SuperScript" class="text-danger"></span>
+					</div>
+				</div>
+
+				<div class="form-group">
+					<label asp-for="Subtext" class="col-md-3 control-label">Alt Metin</label>
+					<div class="col-md-9">
+						<textarea asp-for="Subtext" class="form-control input-lg" style="height:150px; placeholder="Metin Gir"></textarea>
+						<span asp-validation-for="Subtext" class="text-danger"></span>
+					</div>
+				</div>
+
+				<div class="form-group">
+					<label asp-for="Experiencetext" class="col-md-3 control-label">Deneyim Metni</label>
+					<div class="col-md-9">
+						<textarea asp-for="Experiencetext" class="form-control input-lg" style="height:150px; placeholder="Metin Gir"></textarea>
+						<span asp-validation-for="Experiencetext" class="text-danger"></span>
+					</div>
+				</div>
+
+				<div class="form-group">
+					<label asp-for="OurWork" class="col-md-3 control-label">Çalışmalarımız Metni</label>
+					<div class="col-md-9">
+						<textarea asp-for="OurWork" class="form-control input-lg" style="height:150px; placeholder="Metin Gir"></textarea>
+						<span asp-validation-for="OurWork" class="text-danger"></span>
+					</div>
+				</div>
+
+				<div class="form-group">
+					<label asp-for="PhotoPath" class="col-md-3 control-label">RESİM SEÇİNİZ</label>
+					<div class="col-md-9">
+						<input type="file" asp-for="PhotoPath" class="form-control input-lg" />
+						<span asp-validation-for="PhotoPath" class="text-danger"></span>
+					</div>
+				</div>
+
+				<div class="form-actions text-center">
+					<input type="submit" value="KAYDET" class="btn btn-success" />
+				</div>
+
+				<input type="hidden" asp-for="FormID" />
+			</div>
+		</form>
+	</div>
+</div>
+<!-- END SAMPLE FORM PORTLET-->

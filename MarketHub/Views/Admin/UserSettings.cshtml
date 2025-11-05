@@ -1,0 +1,134 @@
+﻿@model IEnumerable<User>
+
+@{
+	ViewData["Title"] = "UserSettings";
+	Layout = "~/Views/Shared/AdminLayout.cshtml";
+	Context con = new Context();
+	string CategoryName = "";
+
+}
+<div class="row">
+	<div class="col-md-2 col-xs-12 col-sm-12 col-lg-2"></div>
+
+	<div class="col-md-8 col-xs-12 col-sm-12 col-lg-8">
+		
+
+		<!-- BEGIN SAMPLE TABLE PORTLET-->
+		<div class="portlet box red">
+			<div class="portlet-title">
+				<div class="caption">
+					<i class="fa fa-cogs"></i>KULLANICI LİSTESİ
+				</div>
+				<div class="tools">
+					<a href="javascript:;" class="collapse">
+					</a>
+					<a href="#portlet-config" data-toggle="modal" class="config">
+					</a>
+					<a href="javascript:;" class="reload">
+					</a>
+					<a href="javascript:;" class="remove">
+					</a>
+				</div>
+			</div>
+			<div class="portlet-body">
+				<div class="table-scrollable">
+					<table class="table  table-dark table-hover">
+						<thead>
+							
+							
+								<tr style="background-color:grey;color:white">
+									<th>
+										@Html.DisplayNameFor(model => model.UserID)
+									</th>
+									<th>
+										@Html.DisplayNameFor(model => model.NameSurname)
+									</th>
+									<th>
+										@Html.DisplayNameFor(model => model.Email)
+									</th>
+									<th style ="display:none;">
+									@Html.DisplayNameFor(model => model.Password)
+									</th>
+									<th>
+										@Html.DisplayNameFor(model => model.Telephone)
+									</th>
+									<th>
+										@Html.DisplayNameFor(model => model.InvoicesAddress)
+									</th>
+									<th>
+										@Html.DisplayNameFor(model => model.IsAdmin)
+									</th>
+									<th>
+										@Html.DisplayNameFor(model => model.Active)
+									</th>
+
+									<th></th>
+									<th></th>
+									<th></th>
+
+
+								</tr>
+							
+							
+						</thead>
+						<tbody>
+
+							@foreach (var item in Model)
+							{
+								<tr>
+									<td>
+										@Html.DisplayFor(model => item.UserID)
+									</td>
+									<td>
+										@Html.DisplayFor(model => item.NameSurname)
+									</td>
+									<td>
+										@Html.DisplayFor(model => item.Email)
+									</td>
+									<td style ="display:none;">
+										@Html.DisplayFor(model => item.Password)
+									</td>
+									<td>
+										@Html.DisplayFor(model => item.Telephone)
+									<td>
+										@Html.DisplayFor(model => item.InvoicesAddress)
+									</td>
+									<td>
+										@Html.DisplayFor(model => item.IsAdmin)
+									</td>
+
+									@if (item.Active)
+									{
+										<td style="background-color:green;color:white;">
+											<label>AKTİF</label>
+										</td>
+									}
+									else
+									{
+										<td style="background-color:red;color:white;">
+											<label>PASİF</label>
+										</td>
+									}
+
+									<td>
+										<a asp-action="UserEdit" asp-route-id="@item.UserID"
+										   class="btn btn-primary">DÜZELT</a>
+										
+										<a asp-action="UserDelete" asp-route-id="@item.UserID"
+										   class="btn btn-danger">SİL</a>
+									</td>
+
+								</tr>
+
+
+
+							}
+
+
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+		<!-- END SAMPLE TABLE PORTLET-->
+	</div>

@@ -1,0 +1,132 @@
+﻿@{
+    ViewData["Title"] = "Cart";
+    Layout = "~/Views/Shared/DefaultLayout.cshtml";
+    decimal KdvDahil = 0;
+    int count = 0;
+    int totalQuantity = 0;
+    decimal totalUnitprice = 0;
+    decimal kdvHariç = 0;
+    decimal totalKdv = 0;
+}
+
+
+<!-- wishlist area start  -->
+<div class="wishlist-wrapper">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12 col-md-12 col-lg-12 ">
+
+                @if (ViewBag.Sepetim.Count > 0)
+                {
+                    <div class="cart-wrapper table-responsive">
+                        <table class="shop_table cart ">
+                            <thead>
+                                <tr>
+                                    <th colspan="3" class="product-subtotal">Ürün Adı</th>
+                                    <th class="product-subtotal">Kdv</th>
+                                    <th class="product-subtotal">Birim Fiyatı</th>
+                                    <th class="product-subtotal">Adet</th>
+                                    <th class="product-subtotal">Toplam Fiyat(Kdv Dahil)</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+
+                                @foreach (var item in ViewBag.Sepetim as IList<OrderRepository>)
+                                {
+                                    <tr class="cart_item">
+                                        <td class="remove-product">
+                                            <a title="Ürün Sil" class="remove" href="@Url.Action("Cart",new
+                                                                               { ProductID = item.ProductID })"><span class="icon-close"></span></a>
+                                </td>
+                                <td class="product-thumbnail">
+                                    <a href="/Home/Details/@item.ProductID">
+                                        <img width="114" height="130" alt="04"
+                                             class="attachment-shop_thumbnail wp-post-image" src="/resimler/@item.PhotoPath">
+                                    </a>
+                                </td>
+                                <td class="product-name">
+                                    <a href="/Home/Details/@item.ProductID">@item.ProductName</a>
+                                </td>
+                                <td class="product-name">
+                                    <span class="amount">@item.Kdv</span>
+                                </td>
+                                <td class="product-name">
+                                    <span class="amount">@item.UnitPrice</span>
+                                </td>
+                                <td class="product-name">
+                                    <span class="amount">@item.Quantity</span>
+                                </td>
+                                <td class="product-name">
+                                    @{
+                                                KdvDahil = 0;
+                                                KdvDahil = Math.Round((((item.Kdv * item.UnitPrice) / 100) +
+                                                item.UnitPrice) * item.Quantity, 2);
+                                            }
+                                            <span class="amount">@KdvDahil</span>
+                                        </td>
+                                    </tr>
+                                }
+
+
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-6 col-md-6 col-sm-6 "></div>
+                        <div class="col-lg-6 col-md-6 col-sm-6 ">
+                            <div class="cart_totals">
+                                <h2>Sepet Özeti </h2>
+                                <div class="total_table">
+                                    <table class="table-responsive">
+                                        <tbody>
+
+                                            @{
+                                                KdvDahil = 0;
+                                                foreach (var item in ViewBag.Sepetim as IList<OrderRepository>)
+                                                {
+                                                    totalQuantity += item.Quantity;
+                                                    totalUnitprice += item.UnitPrice;
+                                                    KdvDahil += Math.Round((((item.Kdv * item.UnitPrice) / 100) +
+                                                    item.UnitPrice) * item.Quantity, 2);
+                                                    kdvHariç += Math.Round((item.UnitPrice * item.Quantity), 2);
+                                                    count++;
+
+                                                }
+                                                totalKdv = KdvDahil - kdvHariç;
+                                            }
+                                            <tr class="cart-subtotal">
+                                                <th>Tutar(Kdv Hariç)</th>
+                                                <td><span class="amount">@kdvHariç</span></td>
+                                            </tr>
+                                            <tr class="shipping">
+                                                <th>KDV</th>
+                                                <td>@totalKdv</td>
+                                            </tr>
+                                            <tr class="order-total">
+                                                <th>Toplam</th>
+                                                <td><strong><span class="amount">@KdvDahil</span></strong> </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                    <div class="submit_crt">
+                                        <a href="@Url.Action("Order", "Home")" title="Ödeme Adımına Geçiniz">
+                                            <input type="button" class="update_cart" value="Ödeme Adımına Geç" />
+
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+                else
+                {
+                    <span style="font-size:40px;background-color:red;color:white;">Sepetiniz Boş</span>
+                }
+
+
+            </div>
+        </div>
+    </div>
+</div>
+<!-- wishlist area end  -->

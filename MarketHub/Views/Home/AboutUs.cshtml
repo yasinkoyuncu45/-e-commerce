@@ -1,0 +1,95 @@
+﻿@model AboutUs
+@{
+    ViewData["Title"] = "AboutUs";
+    Layout = "~/Views/Shared/DefaultLayout.cshtml";
+}
+
+<!-- Page-content area start  -->
+<div class="Page-content-area">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12 col-md-6 col-lg-6">
+                <div class="ap-Left wow fadeInLeft" data-wow-duration="400ms" data-wow-delay="300ms">
+                    <div class="banner-block banner-block-2">
+                        <div class="sppb-addon-content">
+                            <a href="about-us.html#" target="_blank"><img alt="" src="~/img/@Model.PhotoPath" class="img-responsive"></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-12 col-md-6 col-lg-6">
+                <div class="ap-right wow fadeInRight" data-wow-duration="400ms" data-wow-delay="300ms">
+                    <div class="about-us-info">
+                        <h2 class="ainfo-addon-title">Veritabanından dinamik geliyor</h2>
+                        <div class="sppb-addon-content">
+                            <p>@Model.SuperScript</p>
+                           
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="skrill-area">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12 col-md-12 col-lg-12">
+                <div class="sppb-section-title">
+                    <h2 class="sppb-title-heading">Hakkımızda (Veritabanından dinamik geliyor)</h2>
+                    <p class="sppb-title-subheading">@Model.Subtext</p>
+                </div>
+            </div>
+            <div class="clear"></div>
+            <div class="all-sk">
+                <div class="col-sm-12 col-md-6 col-lg-6">
+                    <div class="sk-tab-area">
+                        <div class="ask-title">
+                            <h3>Deneyimlerimiz(Veritabanından dinamik geliyor)</h3>
+                        </div>
+                        <div class="sk-tab wow fadeInDown" data-wow-duration="400ms" data-wow-delay=".6s">
+                            <!-- Nav tabs -->
+                            <ul class="nav nav-tabs" role="tablist">
+                                <li role="presentation" class="active"><a href="about-us.html#vision" aria-controls="vision" role="tab" data-toggle="tab"> </a></li>
+                                
+                            </ul>
+                            <!-- Tab panes -->
+                            <div class="tab-content">
+                                <div role="tabpanel" class="tab-pane active" id="vision">
+                                    <p>@Model.Experiencetext</p>
+                                  
+                                </div>
+                               
+                            </div>  
+
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-6 col-lg-6">
+                    <div class="sk-tab-area">
+                        <div class="ask-title">
+                            <h3>Çalışmalarımız(Veritabanından dinamik geliyor)</h3>
+                        </div>
+                        <div class="sk-tab wow fadeInDown" data-wow-duration="400ms" data-wow-delay=".6s">
+                            <!-- Nav tabs -->
+                            <ul class="nav nav-tabs" role="tablist">
+                                <li role="presentation" class="active"><a href="about-us.html#vision" aria-controls="vision" role="tab" data-toggle="tab"> </a></li>
+
+                            </ul>
+                            <!-- Tab panes -->
+                            <div class="tab-content">
+                                <div role="tabpanel" class="tab-pane active" id="vision">
+                                    <p>@Model.OurWork</p>
+                                    
+                                </div>
+                               
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Page-content area End  -->

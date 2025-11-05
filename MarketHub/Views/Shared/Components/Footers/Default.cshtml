@@ -1,0 +1,42 @@
+﻿@model IEnumerable<Supplier>
+
+
+<!-- Brand area start -->
+<div class="brand-area">
+	<div class="container">
+		<div class="row">
+			<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+				<div class="all-p-title">
+					<h3>MARKALAR</h3>
+				</div>
+			</div>
+			<div class="clear"></div>
+			<div class="all-brand singal-p">
+
+				@foreach (var item in Model)
+				{
+					<div class="singal_brand">
+						<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+							<a href="/Home/SupplierPage/@item.SupplierID">
+								<img src="~/resimler/@item.PhotoPath" alt=""
+									 style="widht:200px;height:150px;" />
+							</a>
+						</div>
+					</div>
+
+				}
+			</div>
+		</div>
+	</div>
+</div>
+@await Component.InvokeAsync("Contact")
+<footer id="sp-footer">
+	<div class="container">
+		<div class="row">
+			<div class="col-sm-6 col-md-6">
+				<p>Telif Hakkı &copy; 2025 <a href="../../../bootexperts_default.html" target="_blank">Yasin Koyuncu</a> 'ya aittir </p>
+			</div>
+		</div>
+	</div>
+</footer>
+<!-- footer top area end -->

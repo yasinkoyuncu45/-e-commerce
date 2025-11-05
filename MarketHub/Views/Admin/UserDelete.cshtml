@@ -1,0 +1,69 @@
+﻿@model User
+
+@{
+	ViewData["Title"] = "UserDelete";
+	Layout = "~/Views/Shared/AdminLayout.cshtml";
+
+
+}
+<!-- BEGIN PAGE CONTENT-->
+<div class="row">
+	<div class="col-md-2"> </div>
+	<div class="col-md-8">
+		<!-- BEGIN SAMPLE TABLE PORTLET-->
+		<div class="portlet box green">
+			<div class="portlet-title">
+				<div class="caption">
+					<i class="fa fa-cogs"></i>Kullanıcılar
+				</div>
+				<div class="tools">
+					<a href="javascript:;" class="collapse">
+					</a>
+					<a href="#portlet-config" data-toggle="modal" class="config">
+					</a>
+					<a href="javascript:;" class="reload">
+					</a>
+					<a href="javascript:;" class="remove">
+					</a>
+				</div>
+			</div>
+			<div class="portlet-body">
+				<div class="table-scrollable">
+					<table class="table table-dark table-hover ">
+						<thead style="background:grey;color:white;">
+							<tr>
+								<th>
+									@Html.DisplayFor(model => model.UserID)
+								</th>
+								<th>
+									@Html.DisplayFor(model => model.NameSurname)
+								</th>
+								<th>
+									@Html.DisplayFor(model => model.Email)
+								</th>
+								<th>
+									@Html.DisplayFor(model => model.Password)
+								</th>
+								<th>
+									@Html.DisplayFor(model => model.Telephone)
+								</th>
+								<th>
+									@Html.DisplayFor(model => model.InvoicesAddress)
+								</th>
+								<th>
+									@Html.DisplayFor(model => model.IsAdmin)
+								</th>
+								<td></td>
+								<th>    @Html.DisplayFor(model => model.Active) </th>
+							</tr>
+						</thead>
+					</table>
+					<form asp-action="UserDelete" method="post">
+						<input type="hidden" asp-for="UserID" />
+						<input type="submit" value="SİL " class="btn btn-danger"
+							   onclick="return confirm('Silmek istediğinize emin misiniz?')" />
+						<a asp-action="UserSettings" class="btn btn-success">KULLANICI LİSTESİ</a>
+					</form>
+				</div>
+			</div>
+		</div>

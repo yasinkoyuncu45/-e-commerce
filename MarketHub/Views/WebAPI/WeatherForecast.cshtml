@@ -1,0 +1,18 @@
+﻿@{
+    ViewData["Title"] = "ArtAndCulture";
+    Layout = "~/Views/Shared/DefaultLayout.cshtml";
+}
+<div class="container">
+    <div class="row">
+        <span style="font-size:30px;background-color:aquamarine;color:white;">
+            İZMİR HAVA DURUMU
+            <br /> @ViewBag.temperature
+        </span>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span style="font-size:30px;background-color:aquamarine;color:white;">
+            @ViewBag.weather
+        </span>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span style="font-size:30px;background-color:aquamarine;color:white;">
+            <img src="@ViewBag.iconurl" />
+        </span>
+    </div>
+</div>
